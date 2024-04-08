@@ -14,8 +14,7 @@ function Navbar({ user }: NavbarProps) {
         <Container>
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             LOGO
-            <input type="search" />
-            <UserMenu currentUser={user}></UserMenu>
+            <UserMenu currentUser={user}/>
           </div>
         </Container>
       </div>

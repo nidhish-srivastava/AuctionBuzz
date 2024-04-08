@@ -1,18 +1,26 @@
-"use client"
+"use client";
 
-import useLoginModal from "@/hooks/useLoginModal";
-import useRegisterModal from "@/hooks/useRegisterModal";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
 
 function Home() {
+  const socket = io("http://localhost:3001");
   
-  const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
+  const joinActionHandler = () =>{
+    socket.emit("join",{
+      userId : socket.id
+    })
+  }
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("SOCKET CONNECTED!,id-->",socket.id);
+    });
+  }, []);
   return (
-    <div>
-      <button onClick={loginModal.onOpen}>Login</button>
-      <button onClick={registerModal.onOpen}>Register</button>
+    <div className="">
+      <button className="mt-24 border" onClick={joinActionHandler}>Join auction</button>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

@@ -37,7 +37,7 @@ const Modal = ({
   
   useEffect(()=>{
     function handleOutsideClick(e:any){
-      if(modalRef.current && !modalRef?.current?.contains(e.target.value)){
+      if(modalRef.current && !modalRef.current.contains(e.target)){
         handleClose()
       }
     }
